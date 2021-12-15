@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="MAIN" Id="{cc9bc050-821b-46d6-9e4b-bb7db941681d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	
+axis: AXIS_REF;
+power: MC_POWER();
+
+limNeg AT %I* :BOOL;
+limPos AT %I*:BOOL;
+
+
+EPSlimNeg AT %I* :BOOL;
+EPSlimPos AT %I*:BOOL;
+
+Ref:BOOL:=FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[power(
+	Axis:= axis, 
+	Enable:= , 
+	Enable_Positive:= limPos AND EPSlimPos, 
+	Enable_Negative:= limNeg AND EPSlimNeg, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
