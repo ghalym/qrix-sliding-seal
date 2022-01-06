@@ -1,33 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
-  <POU Name="MAIN" Id="{cc9bc050-821b-46d6-9e4b-bb7db941681d}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM MAIN
+  <POU Name="FB_AXIS" Id="{14a8788b-6d8a-4822-8cc8-60e00059a4b1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AXIS
+VAR_IN_OUT
+	axis: AXIS_REF;
+END_VAR
+VAR_OUTPUT
+END_VAR
 VAR
 	
-axis: AXIS_REF;
 power: MC_POWER();
 
 limNeg AT %I* :BOOL;
 limPos AT %I*:BOOL;
 
 
-EPSlimNeg AT %I* :BOOL;
-EPSlimPos AT %I*:BOOL;
+Home AT %I* :BOOL;
 
 Ref:BOOL:=FALSE;
-
-diff_axis: AXIS_REF;
-
-fb_diff : FB_AXIS();
-
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[power(
 	Axis:= axis, 
 	Enable:= , 
-	Enable_Positive:= limPos AND EPSlimPos, 
-	Enable_Negative:= limNeg AND EPSlimNeg, 
+	Enable_Positive:= limPos AND limNeg, 
+	Enable_Negative:= limNeg AND limPos , 
 	Override:= , 
 	BufferMode:= , 
 	Options:= , 
@@ -35,10 +33,7 @@ END_VAR
 	Busy=> , 
 	Active=> , 
 	Error=> , 
-	ErrorID=> );
-	
-	
-fb_diff(axis := diff_axis);]]></ST>
+	ErrorID=> );]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
