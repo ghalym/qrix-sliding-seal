@@ -24,8 +24,8 @@ END_VAR
       <ST><![CDATA[power(
 	Axis:= axis, 
 	Enable:= , 
-	Enable_Positive:= limPos AND limNeg, 
-	Enable_Negative:= limNeg AND limPos , 
+	Enable_Positive:= limPos,// AND limNeg, 
+	Enable_Negative:= limNeg,// AND limPos , 
 	Override:= , 
 	BufferMode:= , 
 	Options:= , 

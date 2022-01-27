@@ -20,6 +20,11 @@ diff_axis: AXIS_REF;
 
 fb_diff : FB_AXIS();
 
+
+mcx_axis: AXIS_REF;
+
+fb_mcx : FB_AXIS();
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -38,7 +43,9 @@ END_VAR
 	ErrorID=> );
 	
 	
-fb_diff(axis := diff_axis);]]></ST>
+fb_diff(axis := diff_axis);
+
+fb_mcx(axis := mcx_axis);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
